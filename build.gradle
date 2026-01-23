@@ -1,0 +1,28 @@
+android {
+    namespace 'com.example.sonicspikecpp' // Dein Paketname
+    compileSdk 34
+
+    defaultConfig {
+        applicationId "com.example.sonicspikecpp"
+        minSdk 26
+        targetSdk 34
+        versionCode 1
+        versionName "1.0"
+
+        // C++ Konfiguration
+        externalNativeBuild {
+            cmake {
+                cppFlags ""
+            }
+        }
+    }
+
+    // Pfad zur CMake Datei
+    externalNativeBuild {
+        cmake {
+            path "src/main/cpp/CMakeLists.txt"
+            version "3.10.2"
+        }
+    }
+    // ... restlicher Code
+}
