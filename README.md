@@ -1,23 +1,29 @@
-Manual: SonicSpike (V1.0)
-1. What is SonicSpike?
-SonicSpike is a defensive utility designed to counter unwanted telemarketing and spam calls. It utilizes a combination of high-performance C++ and the Android audio architecture to launch an acoustic counter-measure when a user is being targeted by scammers.
+SonicSpike ist im Grunde ein digitaler „Schalldämpfer“ für nervige Werbeanrufer. 
+Hier ist die genaue Funktionsweise, unterteilt in die drei Kernbereiche:
 
-2. Key Features
-Call Monitoring: Constantly monitors telephony states and triggers a dedicated overlay upon incoming calls.
+1. Der „Spion“ (Überwachung & Erkennung)
+Sobald dein Handy einen Anruf erhält, tritt der BroadcastReceiver (CallReceiver) in Aktion:
 
-C++ Audio Engine: Generates a high-frequency (3,500 Hz) square wave in real-time. This specific frequency is designed to hit the human ear canal's natural resonance.
+System-Überwachung: Die App lauscht im Hintergrund auf das Signal 
 
-Headset Targetting: Specifically exploits the hardware characteristics of Bluetooth headsets commonly used in call centers to maximize acoustic discomfort for the caller.
+Identifizierung: Sie erkennt sofort den Status RINGING (Es klingelt) und kann – sofern du die Berechtigung erteilt hast – sogar die Nummer des Anrufers auslesen.
 
-3. Technical Operation
-When the user activates "SonicSpike":
+Blitzstart: Bevor du überhaupt abhebst, bereitet der SpikeService im Hintergrund die „Waffe“ 
 
-The signal is injected into the Voice Uplink stream.
+2. Die Benutzeroberfläche (Das Overlay)
+Da Android Standard-Anrufbildschirme streng schützt, nutzt SonicSpike einen Trick:
 
-The app forces Speakerphone Mode to create a feedback loop between the speaker and microphone, further amplifying the output.
+System-Overlay: Die App legt ein schwebendes Fenster (System Alert Window) direkt über den Anrufbildschirm.
 
-The underlying C++ engine ensures raw, unfiltered data transmission (Clipping) with minimal latency to bypass software-based noise cancellation on the receiver's end.
+Sichtbarkeit: Dieses Fenster zeigt dein Sonic-Icon und den großen roten Angriffs-Button, selbst wenn dein Sperrbildschirm aktiv ist.
 
-⚠️ Wichtiger Sicherheitshinweis / Safety Disclaimer
+Interaktion: Du entscheidest: Ist es ein bekannter Kontakt? Dann ignoriere das Fenster. Ist es ein Spammer? Dann mach dich bereit.
 
-English: Use this tool at your own risk. Extreme volume levels can cause hearing damage. This utility is intended solely for defense against illegal spam activities.
+Der „Angriff“ in der Praxis:
+Annahme: Du nimmst den Spam-Anruf manuell an.
+
+Trigger: Du drückst auf den Sonic-Button.
+
+Feedback-Loop: Der schrille 3500 Hz Ton knallt aus deinem Lautsprecher direkt in dein eigenes Mikrofon.
+
+Übertragung: Das Mikrofon schickt diesen verzerrten, ohrenbetäubenden Lärm mit voller Lautstärke durch die Telefonleitung direkt in das Headset des Callcenter-Mitarbeiters.
